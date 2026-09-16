@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PostaCard — Virtual Postcards</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <div class="brand-name">Posta<span>Card.</span></div>
+      <div class="tagline">💌 Virtual postcards, made with love</div>
+    </div>
+    <button id="aboutBtn" class="about-btn">About 🌸</button>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>Send someone a little<br><em>something special</em> 🌍</h1>
+      <p>Make a personalised virtual postcard with your words and your photo. Free, instant, and ready to share.</p>
+    </section>
+
+    <div class="steps">
+      <div class="step active" data-step="1"><b>1</b><span>Create</span></div>
+      <div class="step-line"></div>
+      <div class="step" data-step="2"><b>2</b><span>Preview</span></div>
+      <div class="step-line"></div>
+      <div class="step" data-step="3"><b>3</b><span>Share</span></div>
+    </div>
+
+    <section id="panel1" class="panel active">
+      <div class="card-grid">
+        <div>
+          <div class="section-title">✍️ Write your message</div>
+          <p class="hint">What do you want to say? Keep it warm, keep it you.</p>
+
+          <label>Your message</label>
+          <textarea id="message" maxlength="500" placeholder="Wish you were here..."></textarea>
+          <div id="charCount" class="char-count">0 / 500</div>
+
+          <label class="upload-label">📸 Add a photo <span>optional</span></label>
+          <div id="uploadArea" class="upload-area">
+            <input id="imageUpload" type="file" accept="image/jpeg,image/png,image/webp,image/gif">
+            <img id="thumbPreview" alt="Selected photo">
+            <div id="uploadIcon" class="upload-icon">📷</div>
+            <strong id="uploadText">Tap to upload your photo</strong>
+            <small id="uploadSub">JPG, PNG, WEBP or GIF · max 5MB</small>
+            <button id="removeImgBtn" class="remove-img" type="button">✕ Remove photo</button>
+          </div>
+
+          <label>Your name <span class="optional">(optional)</span></label>
+          <input id="fromName" type="text" maxlength="100" placeholder="From your friend, with love 💛">
+
+          <button id="toPreviewBtn" class="primary">Preview postcard →</button>
+        </div>
+
+        <div class="preview-column">
+          <div class="preview-label">LIVE PREVIEW</div>
+          <div id="postcard" class="postcard front">
+            <img id="frontImg" class="front-photo" alt="">
+            <div id="defaultArt" class="default-art">
+              <div class="sun">☀</div>
+              <div class="hills"></div>
+              <div class="wish">Wish you were here! 🌿</div>
+            </div>
+          </div>
+          <div class="preview-caption">Front of your virtual postcard</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="panel2" class="panel">
+      <div class="section-title">💌 Your postcard</div>
+      <p class="hint">Tap the front/back buttons to check both sides before sharing.</p>
+
+      <div class="preview-switch">
+        <button id="frontSideBtn" class="active">🖼️ Front</button>
+        <button id="backSideBtn">✉️ Back</button>
+      </div>
+
+      <div id="bigPostcard" class="postcard big front">
+        <img id="bigFrontImg" class="front-photo" alt="">
+        <div id="bigDefaultArt" class="default-art">
+          <div class="sun">☀</div><div class="hills"></div>
+          <div class="wish">Wish you were here! 🌿</div>
+        </div>
+        <div id="backContent" class="back-content">
+          <div class="back-message" id="backMessage">Your message will appear here...</div>
+          <div class="back-from" id="backFrom">— From you, with love 💛</div>
+          <div class="stamp">🌸</div>
+          <div class="postmark">POSTACARD<br>VIRTUAL MAIL</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="backToEdit" class="secondary">← Edit</button>
+        <button id="toShareBtn" class="primary">Continue to sharing →</button>
+      </div>
+    </section>
+
+    <section id="panel3" class="panel">
+      <div class="success-icon">💌</div>
+      <h2>Your postcard is ready!</h2>
+      <p class="share-copy">No payment, address, or account needed. Choose how you'd like to share it.</p>
+
+      <div class="share-grid">
+        <button id="emailBtn" class="share-card">
+          <span>✉️</span><strong>Send by email</strong><small>Open your email app with the postcard link</small>
+        </button>
+        <button id="copyBtn" class="share-card">
+          <span>🔗</span><strong>Copy share link</strong><small>Copy a link you can paste anywhere</small>
+        </button>
+        <button id="downloadBtn" class="share-card">
+          <span>⬇️</span><strong>Download postcard</strong><small>Save the front and back as an image</small>
+        </button>
+        <button id="nativeShareBtn" class="share-card">
+          <span>📤</span><strong>Share</strong><small>Use your device's share menu</small>
+        </button>
+      </div>
+
+      <div id="shareLinkBox" class="share-link-box">
+        <label>Share link</label>
+        <div><input id="shareLink" readonly><button id="copyLinkAgain">Copy</button></div>
+        <small id="shareNote"></small>
+      </div>
+
+      <button id="newBtn" class="secondary new-btn">Create another postcard</button>
+    </section>
+  </main>
+
+  <footer>
+    Made with 🌸 by PostaCard
+  </footer>
+
+  <div id="aboutModal" class="modal">
+    <div class="modal-inner">
+      <button id="closeAbout" class="close">✕</button>
+      <div class="about-flower">🌸</div>
+      <h2>Hey, I'm Madhumita!</h2>
+      <p class="about-role">Builder · Writer · Postcard Lover</p>
+      <p>💌</p>
+      <p>So many of my friends collect postcards as souvenirs when they travel — and it got me thinking.💌</p>
+      <p>Letting my friend know I thought of her when I saw a sunset at St Ives beach through a text message just isn't cutting it. And sending an actual postcard from abroad? Time constraints, language barriers, it's a whole thing.</p>
+      <p>So I built PostaCard — come back home and send your own personalised postcard to anyone around the world. Hope you like it! 🌍</p>
+      <div class="about-links">
+        <a href="https://open.substack.com/" target="_blank">✍️ I write on Substack</a>
+        <a href="https://www.amazon.com/" target="_blank">📖 Read my book Patchwork of a Rolling Sky</a>
+        <a href="https://instagram.com/" target="_blank">Say hello on Instagram! 💌</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
