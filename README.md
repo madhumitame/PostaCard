@@ -2,15 +2,6 @@
 
 A completely virtual, free version of PostaCard.
 
-## Removed
-- Physical postcard printing
-- Lob
-- Stripe
-- Addresses
-- Recipient details
-- Payment
-- Webhooks
-
 ## Included
 - Message editor
 - Photo upload (up to 5MB)
