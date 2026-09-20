@@ -42,7 +42,7 @@
           <label class="upload-label">📸 Add a photo <span>optional</span></label>
           <div id="uploadArea" class="upload-area">
             <input id="imageUpload" type="file" accept="image/jpeg,image/png,image/webp,image/gif">
-            <img id="thumbPreview" alt="Selected photo">
+            <img id="thumbPreview" class="thumb-preview" alt="Selected photo">
             <div id="uploadIcon" class="upload-icon">📷</div>
             <strong id="uploadText">Tap to upload your photo</strong>
             <small id="uploadSub">JPG, PNG, WEBP or GIF · max 5MB</small>
@@ -80,17 +80,17 @@
       </div>
 
       <div id="bigPostcard" class="postcard big front">
-        <img id="bigFrontImg" class="front-photo" alt="">
+        <div id="bigPostcardFront" class="postcard-download-front"><img id="bigFrontImg" class="front-photo" alt="">
         <div id="bigDefaultArt" class="default-art">
           <div class="sun">☀</div><div class="hills"></div>
           <div class="wish">Wish you were here! 🌿</div>
         </div>
-        <div id="backContent" class="back-content">
+        </div><div id="bigPostcardBack" class="postcard-download-back"><div id="backContent" class="back-content">
           <div class="back-message" id="backMessage">Your message will appear here...</div>
           <div class="back-from" id="backFrom">— From you, with love 💛</div>
           <div class="stamp">🌸</div>
           <div class="postmark">POSTACARD<br>VIRTUAL MAIL</div>
-        </div>
+        </div></div>
       </div>
 
       <div class="actions">

@@ -1,28 +1,19 @@
-# PostaCard — Virtual
+# PostaCard — virtual postcards with real photo-inclusive share links
 
-A completely virtual, free version of PostaCard.
+This version keeps the existing design and adds real persistent share links.
 
-## Included
-- Message editor
-- Photo upload (up to 5MB)
-- Front/back postcard preview
-- Email sharing
-- Copy share link
-- Native device sharing
-- Download postcard as PNG
-- About section
-- Mobile/iPad friendly layout
+When a user shares a postcard, the photo is uploaded to Netlify Blobs and the postcard record stores the photo ID. The generated link contains only the postcard ID, for example `/?p=<id>`. Opening that link retrieves the postcard data and the original photo, so the recipient sees the actual uploaded picture.
 
-## Deploy on Netlify
+### Netlify setup
 
-Upload this folder to a GitHub repository and connect it to Netlify, or drag the folder into Netlify's deploy workflow.
+Deploy this folder as a Netlify site. The project uses Netlify Functions and `@netlify/blobs` for persistent storage. No Stripe, Lob, payment, address, or physical-mail code is included.
 
-No environment variables or server functions are required.
+Functions:
+- `upload-image` — stores the uploaded photo
+- `create-postcard` — stores message/name/photo reference and creates the postcard ID
+- `postcard/:id` — retrieves postcard data
+- `image/:id` — serves the stored photo
 
-## Important note about share links
+The photo is not placed in the URL, so links stay short and usable.
 
-The app deliberately does not put a photo into the URL. Large image data makes links unreliable and can exceed browser/server URL limits.
-
-The copied link preserves the message and sender name. The photo remains available on the device that created it. For a photo-inclusive postcard, use Download or the device Share option.
-
-If you later want permanent photo-inclusive public links, add a small image/object-storage backend (for example Netlify Blobs or another storage provider).
+Review current Netlify Blobs limits/pricing for the account used to deploy the site before public launch.
