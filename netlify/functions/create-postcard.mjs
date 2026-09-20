@@ -12,6 +12,6 @@ export default async (request) => {
     const id = crypto.randomUUID();
     await store.setJSON(id, {message,name,imageId,createdAt:new Date().toISOString()});
     const origin = new URL(request.url).origin;
-    return Response.json({id,url:`${origin}/?p=${encodeURIComponent(id)}`});
+    return Response.json({id,url:`${origin}/p/${encodeURIComponent(id)}`});
   } catch (e) { console.error(e); return Response.json({error:'Could not create postcard.'},{status:500}); }
 };
