@@ -78,4 +78,4 @@ async function restoreShared(id){
   }catch{setStatus('That postcard link could not be found.');}
 }
 updatePreview();
-const id=new URLSearchParams(location.search).get('p');if(id)restoreShared(id);
+const params=new URLSearchParams(location.search);const pathMatch=location.pathname.match(/^\/p\/([^/]+)\/?$/);const id=pathMatch?decodeURIComponent(pathMatch[1]):params.get('p');if(id)restoreShared(id);
