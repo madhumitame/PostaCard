@@ -70,12 +70,38 @@ $('aboutBtn').addEventListener('click',()=>$('aboutModal').classList.add('open')
 
 async function restoreShared(id){
   try{
-    const r=await fetch(`/.netlify/functions/postcard/${encodeURIComponent(id)}`);const data=await r.json();if(!r.ok)throw new Error();
-    postcard.message=data.message||'';postcard.name=data.name||'';postcard.imageId=data.imageId||null;
-    $('message').value=postcard.message;$('fromName').value=postcard.name;
-    if(postcard.imageId){postcard.image=`/.netlify/functions/image/${encodeURIComponent(postcard.imageId)}`;$('bigFrontImg').src=postcard.image;$('frontImg').src=postcard.image;$('bigFrontImg').classList.add('visible');$('frontImg').classList.add('visible');$('bigDefaultArt').classList.add('hidden');$('defaultArt').classList.add('hidden')}
-    updatePreview();go(2);setStatus('Shared postcard loaded 💌');
-  }catch{setStatus('That postcard link could not be found.');}
+    const r=await fetch(`/.netlify/functions/postcard?id=${encodeURIComponent(id)}`);
+    const data=await r.json();
+
+    if(!r.ok) throw new Error(data.error || 'Postcard could not be loaded.');
+
+    postcard.message=data.message||'';
+    postcard.name=data.name||'';
+    postcard.imageId=data.imageId||null;
+
+    $('message').value=postcard.message;
+    $('fromName').value=postcard.name;
+
+    if(postcard.imageId){
+      postcard.image=`/.netlify/functions/image?id=${encodeURIComponent(postcard.imageId)}`;
+
+      $('bigFrontImg').src=postcard.image;
+      $('frontImg').src=postcard.image;
+
+      $('bigFrontImg').classList.add('visible');
+      $('frontImg').classList.add('visible');
+      $('bigDefaultArt').classList.add('hidden');
+      $('defaultArt').classList.add('hidden');
+    }
+
+    updatePreview();
+    go(2);
+    setStatus('Shared postcard loaded 💌');
+
+  }catch(e){
+    console.error('restoreShared error:',e);
+    setStatus(e.message || 'That postcard link could not be found.');
+  }
 }
 updatePreview();
 const params=new URLSearchParams(location.search);const pathMatch=location.pathname.match(/^\/p\/([^/]+)\/?$/);const id=pathMatch?decodeURIComponent(pathMatch[1]):params.get('p');if(id)restoreShared(id);
